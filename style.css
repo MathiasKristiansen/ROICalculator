@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -21,7 +22,7 @@ body {
 }
 
 label {
-    color: #005b82; /* Primary blue color similar to NRC */
+    color: #005b82; /* Expert blue for a touch of NRC's secondary colors */
     font-weight: 700;
     margin-bottom: 5px;
     display: block;
@@ -37,7 +38,7 @@ input {
 }
 
 button {
-    background-color: #005b82; /* Primary blue color */
+    background-color: #FD5A00; /* NRC Orange */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -45,13 +46,17 @@ button {
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif; /* Roboto Condensed for buttons */
 }
 
 button:hover {
-    background-color: #004a6e; /* Slightly darker blue on hover */
+    background-color: #E04E00; /* A slightly darker shade for hover effect */
 }
 
 #result {
-    color: #333;
+    color: #CE5C43; /* Crisis red for the results to stand out */
     margin-top: 10px;
+    font-family: 'Noto Serif', serif; /* Noto Serif for the results */
 }
+
+/* You might want to add additional styling for headers, paragraphs, etc. */

@@ -1,49 +1,64 @@
-<form id="roiForm">
-    <label for="numSignups">Number of Signups:</label>
-    <input type="number" id="numSignups" name="numSignups" step="any">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="roiForm">
+        <label for="numSignups">Number of Signups:</label>
+        <input type="number" id="numSignups" name="numSignups">
 
-    <label for="avgAmount">Average Amount:</label>
-    <input type="number" id="avgAmount" name="avgAmount" step="any">
+        <label for="avgAmount">Average Amount:</label>
+        <input type="number" id="avgAmount" name="avgAmount" step="none">
 
-    <!-- Repeat for each drop-out rate -->
-    <label for="dropout0">Drop out Rate after 0 Payments:</label>
-    <input type="number" id="dropout0" name="dropout0" step="0.01" min="0" max="1">
+        <label for="dropout0">Drop out Rate after 0 Payments:</label>
+        <input type="number" id="dropout0" name="dropout0" step="0.01" min="0" max="1">
 
-    <label for="dropout1">Drop out Rate after 1 Payment:</label>
-    <input type="number" id="dropout1" name="dropout1" step="0.01" min="0" max="1">
+        <label for="dropout1">Drop out Rate after 1 Payment:</label>
+        <input type="number" id="dropout1" name="dropout1" step="0.01" min="0" max="1">
 
-    <label for="dropout1">Drop out Rate after 2 Payment:</label>
-    <input type="number" id="dropout2" name="dropout2" step="0.01" min="0" max="1">
+        <label for="dropout2">Drop out Rate after 2 Payments:</label>
+        <input type="number" id="dropout2" name="dropout2" step="0.01" min="0" max="1">
 
-    <label for="dropout1">Drop out Rate after 3 Payment:</label>
-    <input type="number" id="dropout3" name="dropout3" step="0.01" min="0" max="1">
+        <label for="dropout3">Drop out Rate after 3 Payments:</label>
+        <input type="number" id="dropout3" name="dropout3" step="0.01" min="0" max="1">
 
-    <label for="dropout1">Drop out Rate beyond 3 Payments:</label>
-    <input type="number" id="dropoutB" name="dropoutB" step="0.01" min="0" max="1">
+        <label for="dropoutB">Drop out Rate beyond 3 Payments:</label>
+        <input type="number" id="dropoutB" name="dropoutB" step="0.01" min="0" max="1">
 
-    <!-- Add other dropout rates in the same pattern -->
+        <label for="paymentPrecision">Payment Precision:</label>
+        <input type="number" id="paymentPrecision" name="paymentPrecision" step="0.01" min="0">
 
-    <label for="paymentPrecision">Payment Precision:</label>
-    <input type="number" id="paymentPrecision" name="paymentPrecision" step="0.01" min="0">
+        <label for="agencyCost1">Agency Cost 1st Payment:</label>
+        <input type="number" id="agencyCost1" name="agencyCost1">
 
-    <label for="agencyCost1">Agency Cost 1st Payment:</label>
-    <input type="number" id="agencyCost1" name="agencyCost1" step="any">
+        <label for="agencyCost3">Agency Cost 3rd Payment:</label>
+        <input type="number" id="agencyCost3" name="agencyCost3" step="any">
 
-    <label for="agencyCost3">Agency Cost 3rd Payment:</label>
-    <input type="number" id="agencyCost3" name="agencyCost3" step="any">
+        <label for="discountRate">Discount Rate:</label>
+        <input type="number" id="discountRate" name="discountRate" step="any">
 
-    <label for="discountRate">Discount Rate:</label>
-    <input type="number" id="discountRate" name="discountRate" step="any">
+        <button type="button" onclick="calculateROI()">Calculate ROI</button>
+    </form>
 
-    <button type="button" onclick="calculateROI()">Calculate ROI</button>
-</form>
+    <div id="results">
+        <p id="totalAgencyCost"></p>
+        <p id="incomeAfter3Payments"></p>
+        <p id="donorLifetimeMonths"></p>
+        <p id="avgDonorLifetimeValue"></p>
+        <p id="totalDonorLifetimeValue"></p>
+        <p id="totalIncome"></p>
+        <p id="roiResult"></p>
+    </div>
 
-<div id="results">
-    <p id="totalAgencyCost"></p>
-    <p id="incomeAfter3Payments"></p>
-    <p id="donorLifetimeMonths"></p>
-    <p id="avgDonorLifetimeValue"></p>
-    <p id="totalDonorLifetimeValue"></p>
-    <p id="totalIncome"></p>
-    <p id="roiResult"></p>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <canvas id="cashflowChart"></canvas>
+
+
+</body>
+</html>
+

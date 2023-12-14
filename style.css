@@ -1,62 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
-
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+    justify-content: space-around; /* Adds space between form and results */
+    align-items: start;
+    padding: 20px;
+    font-family: Arial, sans-serif; /* Or any other font you prefer */
+    background-color: #f4f4f4; /* Background color for the body */
 }
 
-#roiForm {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
-    width: 300px;
+.logo {
+    display: block;
+    margin: 0 auto; /* Centers the logo */
+    max-width: 100px; /* Adjust size as needed */
+    padding-bottom: 20px;
 }
+
+#roiForm, #results {
+    flex: 1;
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 
 label {
-    color: #005b82; /* Expert blue for a touch of NRC's secondary colors */
-    font-weight: 700;
-    margin-bottom: 5px;
     display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #235e74; /* Expert Blue for field text */
 }
 
 input {
     width: 100%;
     padding: 8px;
     margin-bottom: 20px;
-    border-radius: 4px;
     border: 1px solid #ccc;
-    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #333; /* Expert Blue for input text */
 }
 
 button {
-    background-color: #FD5A00; /* NRC Orange */
+    background-color: #FD5A00; /* NRC Orange for button */
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    box-sizing: border-box;
-    font-family: 'Roboto Condensed', sans-serif; /* Roboto Condensed for buttons */
 }
 
 button:hover {
-    background-color: #E04E00; /* A slightly darker shade for hover effect */
+    background-color: #E04E00; /* A darker shade of NRC Orange for button hover */
 }
 
-#result {
-    color: #CE5C43; /* Crisis red for the results to stand out */
-    margin-top: 10px;
-    font-family: 'Noto Serif', serif; /* Noto Serif for the results */
+#results {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* You might want to add additional styling for headers, paragraphs, etc. */
+#results p {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333; /* Color for the results text */
+}
+
+/* Styles for the cashflow chart */
+#cashflowChart {
+    margin-top: 20px;
+    max-width: 600px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+}

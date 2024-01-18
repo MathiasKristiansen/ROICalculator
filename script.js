@@ -3,7 +3,6 @@ var numSignups1, avgAmount1, dropoutRates1, agencyCost11, paymentPrecision1;
 var numSignups2, avgAmount2, dropoutRates2, agencyCost12, paymentPrecision2;
 var incomeData1, incomeData2;
 var cashflowChart; // Chart instance
-var Months;
 
 
 
@@ -27,27 +26,27 @@ function generateMonthLabels(Months) {
 
 
 // Function to calculate monthly income
-function calculateMonthlyIncome1() {
+function calculateMonthlyIncome1(numSignups1, avgAmount1, dropoutRates1, months, paymentPrecision1) {
     let data1 = [];
     let remainingDonors1 = numSignups1;
 
-
-    for (let i = 0; i < Months; i++) {
+    for (let i = 0; i < months; i++) {
         let dropoutRate1 = i < dropoutRates1.length ? dropoutRates1[i] : dropoutRates1[dropoutRates1.length - 1];
         remainingDonors1 *= (1 - dropoutRate1);
 
         let monthlyIncome1 = remainingDonors1 * avgAmount1 * paymentPrecision1;
+
         data1.push(monthlyIncome1);
     }
 
     return data1;
 }
 
-function calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, Months) {
+function calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, months, paymentPrecision2) {
     let data2 = [];
     let remainingDonors2 = numSignups2;
 
-    for (let i = 0; i < Months; i++) {
+    for (let i = 0; i < months; i++) {
         let dropoutRate2 = i < dropoutRates2.length ? dropoutRates2[i] : dropoutRates2[dropoutRates2.length - 1];
         remainingDonors2 *= (1 - dropoutRate2);
 
@@ -266,8 +265,6 @@ document.getElementById('calculateButton').addEventListener('click', function() 
 
     // Fetch income data for both scenarios
     updateChart(monthLabels, maxMonths, incomeData1, incomeData2);
-
-
 });
 
 document.getElementById('downloadChart').addEventListener('click', function() {

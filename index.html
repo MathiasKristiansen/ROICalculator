@@ -7,58 +7,163 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="roiForm">
-        <label for="numSignups">Number of Signups:</label>
-        <input type="number" id="numSignups" name="numSignups">
+    <div class="container">
+        <div class="forms-section">
+            <form id="roiForm1" class="roi-form scenario-form">
+                <form id="roiForm1" class="roi-form scenario-form">
+                    <h2>Scenario 1</h2>
 
-        <label for="avgAmount">Average Amount:</label>
-        <input type="number" id="avgAmount" name="avgAmount" step="none">
+                    <label for="ScenarioName1">Scenario Name</label>
+                    <input type="string" id="ScenarioName1" name="ScenarioName1">
+                    <span class="info-icon" data-tooltip="Enter the total number of signups">&#9432;</span>
+                 </p>
 
-        <label for="dropout0">Drop out Rate after 0 Payments:</label>
-        <input type="number" id="dropout0" name="dropout0" step="0.01" min="0" max="1">
+                    <p>
+                        <label for="numSignups1">Number of Signups:</label>
+                        <input type="number" id="numSignups1" name="numSignups1">
+                        <span class="info-icon" data-tooltip="Enter the total number of signups">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="avgAmount1">Average Amount:</label>
+                        <input type="number" id="avgAmount1" name="avgAmount1"> <span>kr</span>
+                        <span class="info-icon" data-tooltip="Enter the average amount in kr">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="dropout01">Drop out Rate after 0 Payments:</label>
+                        <input type="number" id="dropout01" name="dropout01" step="0.01" min="0" max="1"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the drop out rate after 0 payments as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="dropout11">Drop out Rate after 1 Payment:</label>
+                        <input type="number" id="dropout11" name="dropout11" step="0.01" min="0" max="1"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the drop out rate after 1 payment as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="dropout21">Drop out Rate after 2 Payments:</label>
+                        <input type="number" id="dropout21" name="dropout21" step="0.01" min="0" max="1"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the drop out rate after 2 payments as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="dropout31">Drop out Rate after 3 Payments:</label>
+                        <input type="number" id="dropout31" name="dropout31" step="0.01" min="0" max="1"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the drop out rate after 3 payments as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="dropoutB1">Drop out Rate beyond 3 Payments:</label>
+                        <input type="number" id="dropoutB1" name="dropoutB1" step="0.01" min="0" max="1"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the drop out rate for more than 3 payments as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="paymentPrecision1">Payment Precision:</label>
+                        <input type="number" id="paymentPrecision1" name="paymentPrecision1" step="0.01" min="0"> <span>%</span>
+                        <span class="info-icon" data-tooltip="Enter the payment precision as a percentage">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="agencyCost11">Agency Cost 1st Payment:</label>
+                        <input type="number" id="agencyCost11" name="agencyCost11"> <span>kr</span>
+                        <span class="info-icon" data-tooltip="Enter the agency cost for the 1st payment in kr">&#9432;</span>
+                    </p>
+                    
+                    <p>
+                        <label for="agencyCost31">Agency Cost 3rd Payment:</label>
+                        <input type="number" id="agencyCost31" name="agencyCost31"> <span>kr</span>
+                        <span class="info-icon" data-tooltip="Enter the agency cost for the 3rd payment in kr">&#9432;</span>
+                    </p>
+                    
+                    
+                    
 
-        <label for="dropout1">Drop out Rate after 1 Payment:</label>
-        <input type="number" id="dropout1" name="dropout1" step="0.01" min="0" max="1">
+                </form>
+                
+            </form>
+            <form id="roiForm2" class="roi-form scenario-form">
+                <form id="roiForm2" class="roi-form scenario-form">
+                    <h2>Scenario 2</h2>
 
-        <label for="dropout2">Drop out Rate after 2 Payments:</label>
-        <input type="number" id="dropout2" name="dropout2" step="0.01" min="0" max="1">
+                    <label for="ScenarioName2">Scenario Name</label>
+                    <input type="string" id="ScenarioName2" name="ScenarioName2"> </p>
 
-        <label for="dropout3">Drop out Rate after 3 Payments:</label>
-        <input type="number" id="dropout3" name="dropout3" step="0.01" min="0" max="1">
+                    <label for="numSignups2">Number of Signups:</label>
+                    <input type="number" id="numSignups2" name="numSignups2"> </p>
+                    
+                    <label for="avgAmount2">Average Amount:</label>
+                    <input type="number" id="avgAmount2" name="avgAmount2"> <span>kr</span></p>
+                    
+                    <label for="dropout02">Drop out Rate after 0 Payments:</label>
+                    <input type="number" id="dropout02" name="dropout02" step="1" min="0" max="100"> <span>%</span></p>
+                    
+                    <label for="dropout12">Drop out Rate after 1 Payment:</label>
+                    <input type="number" id="dropout12" name="dropout12" step="0.01" min="0" max="1"> <span>%</span></p>
+                     
+                    <label for="dropout22">Drop out Rate after 2 Payments:</label>
+                    <input type="number" id="dropout22" name="dropout22" step="0.01" min="0" max="1"> <span>%</span></p>
+                    
+                    <label for="dropout32">Drop out Rate after 3 Payments:</label>
+                    <input type="number" id="dropout32" name="dropout32" step="0.01" min="0" max="1"> <span>%</span></p>
+                    
+                    <label for="dropoutB2">Drop out Rate beyond 3 Payments:</label>
+                    <input type="number" id="dropoutB2" name="dropoutB2" step="0.01" min="0" max="1"> <span>%</span></p>
+                    
+                    <label for="paymentPrecision2">Payment Precision:</label>
+                    <input type="number" id="paymentPrecision2" name="paymentPrecision2" step="0.01" min="0"> <span>%</span></p>
+                    
+                    <label for="agencyCost12">Agency Cost 1st Payment:</label>
+                    <input type="number" id="agencyCost12" name="agencyCost12"> <span>kr</span></p>
+                    
+                    <label for="agencyCost32">Agency Cost 3rd Payment:</label>
+                    <input type="number" id="agencyCost32" name="agencyCost32"> <span>kr</span></p>
+                    
 
-        <label for="dropoutB">Drop out Rate beyond 3 Payments:</label>
-        <input type="number" id="dropoutB" name="dropoutB" step="0.01" min="0" max="1">
+                </form>
+                
+            </form>
+            <button id="calculateButton" onclick="calculateScenario1(); calculateScenario2();">Calculate and/or Compare</button>
+        </div>
+        <div class="results-section">
+            <div id="results1" class="results">
+                <div id="results1" class="results">
+                    <h3>Results for <span id="ScenarioName1">Scenario 1</span></h3>
+                    <p id="totalAgencyCost1">Total Agency Cost: </p>
+                    <p id="incomeAfter3Payments1">Income after 3 Payments: </p>
+                    <p id="donorLifetimeMonths1">Donor Lifetime in Months: </p>
+                    <p id="avgDonorLifetimeValue1">Average Donor Lifetime Value: </p>
+                    <p id="totalDonorLifetimeValue1">Total Donor Lifetime Value: </p>
+                    <p id="totalIncome1">Total Income: </p>
+                    <p id="roiResult1"><b>ROI:</b> </p>
+                </div>
+                
+            </div>
+            <div id="results2" class="results">
+                <div id="results2" class="results">
+                    <h3>Results for Scenario 2</h3>
+                    <p id="totalAgencyCost2">Total Agency Cost: </p>
+                    <p id="incomeAfter3Payments2">Income after 3 Payments: </p>
+                    <p id="donorLifetimeMonths2">Donor Lifetime in Months: </p>
+                    <p id="avgDonorLifetimeValue2">Average Donor Lifetime Value: </p>
+                    <p id="totalDonorLifetimeValue2">Total Donor Lifetime Value: </p>
+                    <p id="totalIncome2">Total Income: </p>
+                    <p id="roiResult2"><b>ROI:</b> </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="chart-section">
+        <canvas id="cashflowChart"></canvas>
+        <button id="downloadChart">Download Chart</button>
 
-        <label for="paymentPrecision">Payment Precision:</label>
-        <input type="number" id="paymentPrecision" name="paymentPrecision" step="0.01" min="0">
-
-        <label for="agencyCost1">Agency Cost 1st Payment:</label>
-        <input type="number" id="agencyCost1" name="agencyCost1">
-
-        <label for="agencyCost3">Agency Cost 3rd Payment:</label>
-        <input type="number" id="agencyCost3" name="agencyCost3" step="any">
-
-        <label for="discountRate">Discount Rate:</label>
-        <input type="number" id="discountRate" name="discountRate" step="any">
-
-        <button type="button" onclick="calculateROI()">Calculate ROI</button>
-    </form>
-
-    <div id="results">
-        <p id="totalAgencyCost"></p>
-        <p id="incomeAfter3Payments"></p>
-        <p id="donorLifetimeMonths"></p>
-        <p id="avgDonorLifetimeValue"></p>
-        <p id="totalDonorLifetimeValue"></p>
-        <p id="totalIncome"></p>
-        <p id="roiResult"></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
-    <canvas id="cashflowChart"></canvas>
-
-
 </body>
 </html>
 

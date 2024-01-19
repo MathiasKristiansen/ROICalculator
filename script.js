@@ -26,37 +26,21 @@ function generateMonthLabels(Months) {
 
 
 // Function to calculate monthly income
-function calculateMonthlyIncome1(numSignups1, avgAmount1, dropoutRates1, months, paymentPrecision1) {
-    let data1 = [];
-    let remainingDonors1 = numSignups1;
+function calculateMonthlyIncome(numSignups, avgAmount, dropoutRates, months, paymentPrecision) {
+    let data = [];
+    let remainingDonors = numSignups;
 
     for (let i = 0; i < months; i++) {
-        let dropoutRate1 = i < dropoutRates1.length ? dropoutRates1[i] : dropoutRates1[dropoutRates1.length - 1];
-        remainingDonors1 *= (1 - dropoutRate1);
+        let dropoutRate = i < dropoutRates.length ? dropoutRates[i] : dropoutRates[dropoutRates.length - 1];
+        remainingDonors *= (1 - dropoutRate);
 
-        let monthlyIncome1 = remainingDonors1 * avgAmount1 * paymentPrecision1;
+        let monthlyIncome = remainingDonors * avgAmount * paymentPrecision;
 
-        data1.push(monthlyIncome1);
+        data.push(monthlyIncome);
     }
 
-    return data1;
+    return data;
 }
-
-function calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, months, paymentPrecision2) {
-    let data2 = [];
-    let remainingDonors2 = numSignups2;
-
-    for (let i = 0; i < months; i++) {
-        let dropoutRate2 = i < dropoutRates2.length ? dropoutRates2[i] : dropoutRates2[dropoutRates2.length - 1];
-        remainingDonors2 *= (1 - dropoutRate2);
-
-        let monthlyIncome2 = remainingDonors2 * avgAmount2 * paymentPrecision2;
-        data2.push(monthlyIncome2);
-    }
-
-    return data2;
-}
-
 
 
 function calculateScenario1() {
@@ -105,7 +89,7 @@ function calculateScenario1() {
     // Calculate ROI
     var roi1 = (totalIncome1 - totalAgencyCost1) / totalAgencyCost1;
 
-    incomeData1 = calculateMonthlyIncome1(numSignups1, avgAmount1, dropoutRates1, donorLifetimeMonths1, paymentPrecision1);
+    incomeData1 = calculateMonthlyIncome(numSignups1, avgAmount1, dropoutRates1, donorLifetimeMonths1, paymentPrecision1);
 
 
 
@@ -165,7 +149,7 @@ function calculateScenario2() {
     // Calculate ROI
     var roi2 = (totalIncome2 - totalAgencyCost2) / totalAgencyCost2;
 
-    incomeData2 = calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, donorLifetimeMonths2, paymentPrecision2);
+    incomeData2 = calculateMonthlyIncome(numSignups2, avgAmount2, dropoutRates2, donorLifetimeMonths2, paymentPrecision2);
 
 
     // Display results for Scenario 2

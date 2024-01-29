@@ -3,17 +3,16 @@ var numSignups1, avgAmount1, dropoutRates1, agencyCost11, paymentPrecision1;
 var numSignups2, avgAmount2, dropoutRates2, agencyCost12, paymentPrecision2;
 var incomeData1, incomeData2;
 var cashflowChart; // Chart instance
-var Months;
 
 
 
 // Utility function to generate month labels
-function generateMonthLabels(Months) {
+function generateMonthLabels(months) {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let labels = [];
     let currentDate = new Date();
 
-    for (let i = 0; i < Months; i++) {
+    for (let i = 0; i < months; i++) {
         let futureDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, 1);
         let monthIndex = futureDate.getMonth();
         let year = futureDate.getFullYear().toString().slice(-2); // Last two digits of the year
@@ -27,37 +26,21 @@ function generateMonthLabels(Months) {
 
 
 // Function to calculate monthly income
-function calculateMonthlyIncome1() {
-    let data1 = [];
-    let remainingDonors1 = numSignups1;
+function calculateMonthlyIncome(numSignups, avgAmount, dropoutRates, months, paymentPrecision) {
+    let data = [];
+    let remainingDonors = numSignups;
 
+    for (let i = 0; i < months; i++) {
+        let dropoutRate = i < dropoutRates.length ? dropoutRates[i] : dropoutRates[dropoutRates.length - 1];
+        remainingDonors *= (1 - dropoutRate);
 
-    for (let i = 0; i < Months; i++) {
-        let dropoutRate1 = i < dropoutRates1.length ? dropoutRates1[i] : dropoutRates1[dropoutRates1.length - 1];
-        remainingDonors1 *= (1 - dropoutRate1);
+        let monthlyIncome = remainingDonors * avgAmount * paymentPrecision;
 
-        let monthlyIncome1 = remainingDonors1 * avgAmount1 * paymentPrecision1;
-        data1.push(monthlyIncome1);
+        data.push(monthlyIncome);
     }
 
-    return data1;
+    return data;
 }
-
-function calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, Months) {
-    let data2 = [];
-    let remainingDonors2 = numSignups2;
-
-    for (let i = 0; i < Months; i++) {
-        let dropoutRate2 = i < dropoutRates2.length ? dropoutRates2[i] : dropoutRates2[dropoutRates2.length - 1];
-        remainingDonors2 *= (1 - dropoutRate2);
-
-        let monthlyIncome2 = remainingDonors2 * avgAmount2 * paymentPrecision2;
-        data2.push(monthlyIncome2);
-    }
-
-    return data2;
-}
-
 
 
 function calculateScenario1() {
@@ -85,17 +68,19 @@ function calculateScenario1() {
     var donorsBeyond1 = donorsAfter31 * (1 - dropoutRates1[4]);
 
     // Calculate Total Agency Cost
-    var totalAgencyCost1 = (donorsAfter01 * agencyCost11) + (donorsBeyond1 * agencyCost31);
+    var totalAgencyCost1 = (donorsAfter01 * agencyCost11) + (donorsAfter21 * agencyCost31);
   
 
     // Calculate Income after 3 payments
-    var incomeAfter3Payments1 = avgAmount1 * 3 * donorsAfter31 * paymentPrecision1;
+    var incomeAfter3Payments1 = avgAmount1 * (donorsAfter01 + donorsAfter11 + donorsAfter21) * paymentPrecision1
 
     // Calculate Donor Lifetime in months
-    var donorLifetimeMonths1 = (1 / dropoutRates1[4]) + 3;
+    var donorLifetimeMonths1 = ((1 / dropoutRates1[4]) + 3)*2;
+    var donorLifetimeMonths2 = ((1 / parseFloat(document.getElementById('dropoutB2').value) / 100 || 0) + 3)*2;
+    var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
-    var avgDonorLifetimeValue1 = donorLifetimeMonths1 * avgAmount1;
+    var avgDonorLifetimeValue1 = ((1/dropoutRates1[4])+3) * avgAmount1 + (incomeAfter3Payments1/numSignups1);
 
     // Calculate Total Donor Lifetime Value
     var totalDonorLifetimeValue1 = avgDonorLifetimeValue1 * donorsBeyond1;
@@ -106,7 +91,7 @@ function calculateScenario1() {
     // Calculate ROI
     var roi1 = (totalIncome1 - totalAgencyCost1) / totalAgencyCost1;
 
-    incomeData1 = calculateMonthlyIncome1(numSignups1, avgAmount1, dropoutRates1, donorLifetimeMonths1, paymentPrecision1);
+    incomeData1 = calculateMonthlyIncome(numSignups1, avgAmount1, dropoutRates1, donorLifetimeMonths, paymentPrecision1);
 
 
 
@@ -114,10 +99,9 @@ function calculateScenario1() {
     // Display results for Scenario 1
     document.getElementById('totalAgencyCost1').innerText = `Total Agency Cost: ${totalAgencyCost1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
     document.getElementById('incomeAfter3Payments1').innerText = `Income after 3 Payments: ${incomeAfter3Payments1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('donorLifetimeMonths1').innerText = `Donor Lifetime in Months: ${donorLifetimeMonths1.toFixed(2)}`;
+    document.getElementById('donorLifetimeMonths1').innerText = `Donor Lifetime in Months: ${((1/dropoutRates1[4])+3).toFixed(1)}`;
     document.getElementById('avgDonorLifetimeValue1').innerText = `Average Donor Lifetime Value: ${avgDonorLifetimeValue1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('totalDonorLifetimeValue1').innerText = `Total Donor Lifetime Value: ${totalDonorLifetimeValue1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('totalIncome1').innerText = `Total Income: ${totalIncome1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
+    document.getElementById('totalIncome1').innerText = `Total Expected Income: ${totalIncome1.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
     document.getElementById('roiResult1').innerText = `ROI: ${roi1.toFixed(2)}`;
 
 }
@@ -146,16 +130,18 @@ function calculateScenario2() {
     var donorsBeyond2 = donorsAfter32 * (1 - dropoutRates2[4]);
 
     // Calculate Total Agency Cost
-    var totalAgencyCost2 = (donorsAfter02 * agencyCost12) + ((donorsBeyond2 + donorsAfter32) * agencyCost32);
+    var totalAgencyCost2 = (donorsAfter02 * agencyCost12) + (donorsAfter22 * agencyCost32);
 
     // Calculate Income after 3 payments
-    var incomeAfter3Payments2 = avgAmount2 * 3 * donorsAfter32 * paymentPrecision2;
+    var incomeAfter3Payments2 =  avgAmount2 * (donorsAfter02 + donorsAfter12 + donorsAfter22) * paymentPrecision2
 
     // Calculate Donor Lifetime in months
-    var donorLifetimeMonths2 = (1 / dropoutRates2[4]) + 3;
+    var donorLifetimeMonths2 = (((1 / dropoutRates2[4]) + 3)*2);
+    var donorLifetimeMonths1 = ((1 / parseFloat(document.getElementById('dropoutB1').value) / 100 || 0) + 3)*2;
+    var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
-    var avgDonorLifetimeValue2 = donorLifetimeMonths2 * avgAmount2;
+    var avgDonorLifetimeValue2 = (1/dropoutRates2[4]) * avgAmount2 + (incomeAfter3Payments2/numSignups2);
 
     // Calculate Total Donor Lifetime Value
     var totalDonorLifetimeValue2 = avgDonorLifetimeValue2 * donorsBeyond2;
@@ -166,16 +152,15 @@ function calculateScenario2() {
     // Calculate ROI
     var roi2 = (totalIncome2 - totalAgencyCost2) / totalAgencyCost2;
 
-    incomeData2 = calculateMonthlyIncome2(numSignups2, avgAmount2, dropoutRates2, donorLifetimeMonths2, paymentPrecision2);
+    incomeData2 = calculateMonthlyIncome(numSignups2, avgAmount2, dropoutRates2, donorLifetimeMonths, paymentPrecision2);
 
 
     // Display results for Scenario 2
     document.getElementById('totalAgencyCost2').innerText = `Total Agency Cost: ${totalAgencyCost2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
     document.getElementById('incomeAfter3Payments2').innerText = `Income after 3 Payments: ${incomeAfter3Payments2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('donorLifetimeMonths2').innerText = `Donor Lifetime in Months: ${donorLifetimeMonths2.toFixed(2)}`;
+    document.getElementById('donorLifetimeMonths2').innerText = `Donor Lifetime in Months: ${((1/dropoutRates2[4])+3).toFixed(1)}`;
     document.getElementById('avgDonorLifetimeValue2').innerText = `Average Donor Lifetime Value: ${avgDonorLifetimeValue2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('totalDonorLifetimeValue2').innerText = `Total Donor Lifetime Value: ${totalDonorLifetimeValue2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
-    document.getElementById('totalIncome2').innerText = `Total Income: ${totalIncome2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
+    document.getElementById('totalIncome2').innerText = `Total Expected Income: ${totalIncome2.toLocaleString('en-US', { maximumFractionDigits: 0 })} NOK`;
     document.getElementById('roiResult2').innerText = `ROI: ${roi2.toFixed(2)}`;
 
 }
@@ -266,8 +251,6 @@ document.getElementById('calculateButton').addEventListener('click', function() 
 
     // Fetch income data for both scenarios
     updateChart(monthLabels, maxMonths, incomeData1, incomeData2);
-
-
 });
 
 document.getElementById('downloadChart').addEventListener('click', function() {
@@ -287,6 +270,10 @@ console.log(incomeData1)
 console.log(incomeData2)
 
 
+
+
+// Add an event listener to the button or call calculateROI at the appropriate time
+// document.getElementById('yourButtonId').addEventListener('click', calculateROI);
 
 
 // Add an event listener to the button or call calculateROI at the appropriate time

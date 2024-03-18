@@ -68,7 +68,7 @@ function calculateScenario1() {
     var donorsBeyond1 = donorsAfter31 * (1 - dropoutRates1[4]);
 
     // Calculate Total Agency Cost
-    var totalAgencyCost1 = ((donorsAfter01 + donorsAfter11)* agencyCost11) + ((donorsAfter21+donorsAfter31+donorsBeyond1) * agencyCost31);
+    var totalAgencyCost1 = ((donorsAfter01)* agencyCost11) + ((donorsAfter21) * agencyCost31);
   
 
     // Calculate Income after 3 payments
@@ -130,7 +130,7 @@ function calculateScenario2() {
     var donorsBeyond2 = donorsAfter32 * (1 - dropoutRates2[4]);
 
     // Calculate Total Agency Cost
-    var totalAgencyCost2 = ((donorsAfter02+donorsAfter12) * agencyCost12) + ((donorsAfter22+donorsAfter32+donorsBeyond2) * agencyCost32);
+    var totalAgencyCost2 = ((donorsAfter02) * agencyCost12) + ((donorsAfter22) * agencyCost32);
 
     // Calculate Income after 3 payments
     var incomeAfter3Payments2 =  avgAmount2 * (donorsAfter02 + donorsAfter12 + donorsAfter22) * paymentPrecision2

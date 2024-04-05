@@ -67,8 +67,11 @@ function calculateScenario1() {
     var donorsAfter31 = donorsAfter21 * (1 - dropoutRates1[3]);
     var donorsBeyond1 = donorsAfter31 * (1 - dropoutRates1[4]);
 
+
+
     // Calculate Total Agency Cost
     var totalAgencyCost1 = ((donorsAfter01)* agencyCost11) + ((donorsAfter21) * agencyCost31);
+    
   
 
     // Calculate Income after 3 payments
@@ -76,7 +79,7 @@ function calculateScenario1() {
 
     // Calculate Donor Lifetime in months
     var donorLifetimeMonths1 = ((1 / dropoutRates1[4]) + 3)*2;
-    var donorLifetimeMonths2 = ((1 / parseFloat(document.getElementById('dropoutB2').value) / 100 || 0) + 3)*2;
+    var donorLifetimeMonths2 = ((1 / parseFloat(document.getElementById('dropoutB1').value) / 100 || 0) + 3)*2;
     var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
@@ -137,7 +140,7 @@ function calculateScenario2() {
 
     // Calculate Donor Lifetime in months
     var donorLifetimeMonths2 = (((1 / dropoutRates2[4]) + 3)*2);
-    var donorLifetimeMonths1 = ((1 / parseFloat(document.getElementById('dropoutB1').value) / 100 || 0) + 3)*2;
+    var donorLifetimeMonths1 = ((1 / parseFloat(document.getElementById('dropoutB2').value) / 100 || 0) + 3)*2;
     var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
@@ -268,6 +271,8 @@ console.log(maxMonths)
 console.log(monthLabels)
 console.log(incomeData1)
 console.log(incomeData2)
+console.log(donorsAfter01)
+console.log(donorsAfter02)
 
 
 

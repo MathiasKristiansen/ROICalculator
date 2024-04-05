@@ -85,6 +85,7 @@ function calculateScenario1() {
     // Calculate AVG Donor Lifetime Value
     var avgDonorLifetimeValue1 = ((1/dropoutRates1[4])+3) * avgAmount1 + (incomeAfter3Payments1/numSignups1);
     
+    
 
     // Calculate Total Donor Lifetime Value
     var totalDonorLifetimeValue1 = avgDonorLifetimeValue1 * donorsBeyond1;
@@ -96,6 +97,7 @@ function calculateScenario1() {
     var roi1 = (totalIncome1 - totalAgencyCost1) / totalAgencyCost1;
 
     incomeData1 = calculateMonthlyIncome(numSignups1, avgAmount1, dropoutRates1, donorLifetimeMonths, paymentPrecision1);
+    
 
 
 
@@ -145,7 +147,7 @@ function calculateScenario2() {
     var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
-    var avgDonorLifetimeValue2 = (1/dropoutRates2[4]+3) * avgAmount2 + (incomeAfter3Payments2/numSignups2);
+    var avgDonorLifetimeValue2 = (1/(dropoutRates2[4])+3) * avgAmount2 + (incomeAfter3Payments2/numSignups2);
 
     // Calculate Total Donor Lifetime Value
     var totalDonorLifetimeValue2 = avgDonorLifetimeValue2 * donorsBeyond2;

@@ -153,7 +153,7 @@ function calculateScenario2() {
     var totalDonorLifetimeValue2 = avgDonorLifetimeValue2 * donorsBeyond2;
 
     // Calculate Total Income
-    var totalIncome2 = totalDonorLifetimeValue2 + incomeAfter3Payments2;
+    var totalIncome2 = (totalDonorLifetimeValue2 * paymentPrecision2) + incomeAfter3Payments2;
 
     // Calculate ROI
     var roi2 = (totalIncome2 - totalAgencyCost2) / totalAgencyCost2;

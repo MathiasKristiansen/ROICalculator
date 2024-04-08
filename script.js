@@ -83,7 +83,7 @@ function calculateScenario1() {
     var donorLifetimeMonths = Math.max(donorLifetimeMonths2,donorLifetimeMonths1)
 
     // Calculate AVG Donor Lifetime Value
-    var avgDonorLifetimeValue1 = ((1/dropoutRates1[4])+3) * avgAmount1 + (incomeAfter3Payments1/numSignups1) * paymentPrecision1;
+    var avgDonorLifetimeValue1 = (((1/dropoutRates1[4])+3) * avgAmount1 * paymentPrecision1) + (incomeAfter3Payments1/numSignups1);
     
     
 
